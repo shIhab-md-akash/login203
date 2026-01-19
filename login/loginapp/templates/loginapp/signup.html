@@ -1,0 +1,70 @@
+{% extends 'loginapp/base.html' %}
+{% block title %}Signup{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card shadow">
+            <div class="card-body">
+                <h3 class="text-center mb-4">Create Account</h3>
+
+                {% for message in messages %}
+                    <div class="alert alert-info">{{ message }}</div>
+                {% endfor %}
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label class="form-label">Username</label>
+                        <input type="text" name="username" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control" required>
+                    </div>
+
+                   <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" name="password1" id="password1" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" name="password2" id="password2" class="form-control" required>
+                    </div>
+
+                     <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" onclick="togglePassword()">
+                    <label class="form-check-label">
+                        Show Password
+                    </label>
+                </div>
+                <script>
+                  function togglePassword() {
+                      var pass1 = document.getElementById("password1");
+                      var pass2 = document.getElementById("password2");
+
+                      if (pass1.type === "password") {
+                          pass1.type = "text";
+                          pass2.type = "text";
+                      } else {
+                          pass1.type = "password";
+                          pass2.type = "password";
+                      }
+                  }
+                </script>
+
+                    <button type="submit" class="btn btn-primary w-100">Signup</button>
+                </form>
+
+                <p class="text-center mt-3">
+                    Already have an account?
+                    <a href="{% url 'user_login' %}">Login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'loginapp/base.html' %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h2 class="card-title mb-4">Welcome, {{ user.username }}!</h2>
+                    
+                    <div class="alert alert-info">
+                        <strong>Account Details:</strong>
+                        <ul class="mb-0">
+                            <li>Username: <strong>{{ user.username }}</strong></li>
+                            <li>Email: <strong>{{ user.email }}</strong></li>
+                            <li>Account Status: <strong>{% if user.is_active %}Active{% else %}Inactive{% endif %}</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-4">
+                        <a href="{% url 'user_logout' %}" class="btn btn-danger">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
